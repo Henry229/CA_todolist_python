@@ -7,9 +7,10 @@ from controllers.todo_controller import todo_bp
 # def create_app():
 
 app = Flask(__name__)
-app.secret_key = 'this is super key'
+# app.secret_key = 'this is super key'
 
-app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SECRET_KEY'] = 'This is super key'
+# app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 
 db.init_app(app)

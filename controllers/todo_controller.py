@@ -7,10 +7,13 @@ todo_bp = Blueprint('todos', __name__)
 
 @todo_bp.route('/')
 def home():
+    stmt = db.select(Todo).order_by(Todo.id.asc())
+    todos = db.session.scalars(stmt)
+    testData =  TodoSchema(many=True).dump(todos)
     if session.get('registered'):
-        return render_template('home.html')
+        return render_template('home.html', testDataHtml=testData)
     else:
-        return render_template('home.html')
+        return render_template('home.html', testDataHtml=testData)
       
     # stmt = db.select(Todo).order_by(Todo.id)
     # todos = db.session.scalars(stmt)
@@ -20,7 +23,7 @@ def home():
 def add():
     if request.method == 'POST':
         job = request.form.get('job')
-        date = datetime.today()
+        date = datetime.now()
         new_job = Todo(job=job, date=date)
         db.session.add(new_job)
         db.session.commit()

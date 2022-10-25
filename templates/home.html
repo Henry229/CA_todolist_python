@@ -8,5 +8,21 @@
 </head>
 <body>
   <h1>Home page</h1>
+  <h4>BOARD</h4>
+  <table class="table" style = "word-break:break-all" style="table-layout: fixed">
+      <thread>
+          <th>ID</th>
+          <th>TODO</th>
+          <th>DATE</th>
+      </thread>
+      {% for row in testDataHtml %}
+      <tr>
+          <!-- <td>{{ loop.index }}</td> -->
+          <td>{{ row.id }}</td>
+          <td>{{ row.job }}</td>
+          <td>{{ row.date }}</td>
+      </tr>
+      {% endfor %}
+  <!-- This is Accepted Data : {{testDataHtml}} -->
 </body>
 </html>
